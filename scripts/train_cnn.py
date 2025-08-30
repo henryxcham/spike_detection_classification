@@ -1,6 +1,5 @@
 import torch
 from torch.utils.data import TensorDataset, DataLoader
-from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score
 import os
 import sys
 
@@ -8,8 +7,8 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.models import CNNClassifier
-from src.utils import load_and_concatenate_npy, normalize_data
-from src.processing import create_datasets, validate_model
+from src.utils import normalize_data
+from src.model_data_processing import create_datasets, validate_model
 
 def train_cnn():
     # 1. Load and Prepare Data
@@ -59,7 +58,11 @@ def train_cnn():
     patience_counter = 0
     num_epochs = 20
     model_name = 'cnn'
-    best_model_path = f'best_{model_name}_model.pth'
+    model_dir = '../model'
+    os.makedirs(model_dir, exist_ok=True)
+    best_model_path = f'{model_dir}/best_{model_name}_model.pth'
+
+
 
     print(f"Starting {model_name} training loop...")
     for epoch in range(num_epochs):

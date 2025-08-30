@@ -14,8 +14,9 @@ def train_ae():
         '../data/spikes/channel_spikes_9.npy',
         '../data/spikes/channel_spikes_16.npy',
         '../data/spikes/channel_spikes_33.npy',
-        '../data/spikes/channel_spikes_11.npy',
-        '../data/spikes/channel_spikes_40.npy'
+        '../data/spikes/channel_background_9.npy',
+        '../data/spikes/channel_background_16.npy',
+        '../data/spikes/channel_background_33.npy',
     ]
     all_spikes_np = load_and_concatenate_npy(spikes_file_paths)
     all_spikes_tensor = torch.from_numpy(all_spikes_np).float()
@@ -26,8 +27,12 @@ def train_ae():
     trained_autoencoder = train_autoencoder(autoencoder_model, all_spikes_tensor)
     
     # 3. Save the model
-    torch.save(trained_autoencoder.state_dict(), 'best_autoencoder_model.pth')
-    print("Trained autoencoder model saved as 'best_autoencoder_model.pth'.")
+    model_dir = '../model'
+    os.makedirs(model_dir, exist_ok=True)
+    model_path = os.path.join(model_dir, 'best_autoencoder_model.pth')
+    
+    torch.save(trained_autoencoder.state_dict(), model_path)
+    print(f"Trained autoencoder model saved as '{model_path}'.")
 
 if __name__ == "__main__":
     train_ae()

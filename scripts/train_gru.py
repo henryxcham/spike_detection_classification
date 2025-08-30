@@ -6,25 +6,26 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.models import GRUClassifier
-from src.processing import create_datasets, validate_model
+from src.utils import normalize_data
+from src.model_data_processing import create_datasets, validate_model
 
 def train_gru():
     # 1. Load and Prepare Data
     background_file_paths_train = [
         '../data/spikes/channel_background_9.npy',
         '../data/spikes/channel_background_16.npy',
-        '../data/spikes/spike-classification/channel_background_33.npy',
+        '../data/spikes/channel_background_33.npy',
     ]
     spikes_file_paths_train = [
-        '../data/spikes/spike-classification/channel_spikes_9.npy',
-        '../data/spikes/spike-classification/channel_spikes_16.npy',
-        '../data/spikes/spike-classification/channel_spikes_33.npy',
+        '../data/spikes/channel_spikes_9.npy',
+        '../data/spikes/channel_spikes_16.npy',
+        '../data/spikes/channel_spikes_33.npy',
     ]
     background_file_paths_valid = [
-        '../data/spikes/spike-classification/channel_background_11.npy'
+        '../data/spikes/channel_background_11.npy'
     ]
     spikes_file_paths_valid = [
-        '../data/spikes/spike-classification/channel_spikes_11.npy'
+        '../data/spikes/channel_spikes_11.npy'
     ]
 
     X_train, y_train = create_datasets(background_file_paths_train, spikes_file_paths_train)
@@ -56,7 +57,9 @@ def train_gru():
     patience_counter = 0
     num_epochs = 20
     model_name = 'gru'
-    best_model_path = f'best_{model_name}_model.pth'
+    model_dir = '../model'
+    os.makedirs(model_dir, exist_ok=True)
+    best_model_path = f'{model_dir}/best_{model_name}_model.pth'
 
     print(f"Starting {model_name} training loop...")
     for epoch in range(num_epochs):
