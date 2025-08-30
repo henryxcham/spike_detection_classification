@@ -1,14 +1,12 @@
 import torch
 from torch.utils.data import TensorDataset, DataLoader
-from sklearn.metrics import f1_score
 import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from src.models import GRUClassifier
-from src.utils import load_and_concatenate_npy, normalize_data
-from train_cnn import create_datasets, validate_model # Re-use the data loading and validation function
+from src.processing import create_datasets, validate_model
 
 def train_gru():
     # 1. Load and Prepare Data

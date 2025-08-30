@@ -23,7 +23,7 @@ def download_and_extract_data(url: str, output_path: str = "data") -> Path:
     
     print("Downloading data...")
     try:
-        response = requests.get(url, stream=True)
+        response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()
         with open(zip_path, "wb") as f:
             for chunk in response.iter_content(chunk_size=8192):
