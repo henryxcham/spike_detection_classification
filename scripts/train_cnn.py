@@ -3,6 +3,8 @@ from torch.utils.data import TensorDataset, DataLoader
 import os
 import sys
 
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 # Add the parent directory to the path to import src modules
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
