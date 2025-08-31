@@ -74,7 +74,7 @@ Both methods successfully isolated the neuron spike cluster from the background 
 
 1.  **Clone the repository:**
     ```
-    git clone [https://github.com/henryxcham/spike_detection_classification.git](https://github.com/henryxcham/spike_detection_classification.git)
+    git clone https://github.com/henryxcham/spike_detection_classification.git
     cd spike_detection_classification
     ```
 2.  **Create a virtual environment:**
