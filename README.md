@@ -73,15 +73,18 @@ Both methods successfully isolated the neuron spike cluster from the background 
 ## 📦 Setup and Installation
 
 1.  **Clone the repository:**
-    ```git clone [https://github.com/henryxcham/spike_detection_classification.git](https://github.com/henryxcham/spike_detection_classification.git)
+    ```
+    git clone [https://github.com/henryxcham/spike_detection_classification.git](https://github.com/henryxcham/spike_detection_classification.git)
     cd spike_detection_classification
     ```
 2.  **Create a virtual environment:**
-    ```conda create --name spike_detection_classification python=3.12
+    ```
+    conda create --name spike_detection_classification python=3.12
     conda activate spike_detection_classification
     ```
 3.  **Install the required packages:**
-    ```pip install -r requirements.txt
+    ```
+    pip install -r requirements.txt
     ```
 
 ## 📈 Usage
@@ -103,6 +106,8 @@ The data and models are saved in the repo. The notebooks can regenerate both the
  The models can be trained using python script instead of the notebooks.
 
  `python scripts/train_autoencoder.py`
+
  `python scripts/train_cnn.py`
+
  `python scripts/train_gru.py`
 
